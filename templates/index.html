@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/vue-axios.js"></script>
+    <script src="/static/js/flv.min.js"></script>
+    <title>兔肉之家</title>
+</head>
+
+<body>
+    <div>
+        <div class="card" style="margin-left: 10%; margin-right: 10%; margin-top: 40px;">
+            <header class="card-header">
+                <p style="font-size: 25px" class="card-header-title">
+                    {{ data['title'] }}
+                </p>
+                <form method="post" class="card-header-icon" action="username">
+                    <input type="text" required="required" placeholder="用户名" name="username" class="input" value="{{ username }}">
+                </form>
+            </header>
+            <div class="card-content">
+                <div class="columns" style="align-items: center">
+                    <div class="column is-four-fifths">
+                        <div class="content">
+                            <video style="width: 100%" id="videoElement" controls></video>
+                        </div>
+                    </div>
+                    <div class="column" id="app">
+                        <nav class="panel">
+                            <p class="panel-heading">评论</p>
+                            <div style="display: block" class="panel-block">
+                                <input v-model="comment_value" required="required" placeholder="评论内容" type="text" @keyup.enter="sendData" class="input">
+                            </div>
+                            <div style="overflow-y: auto; height: 480px">
+                                <div class="panel-block" v-for="item in comments">
+                                    <p style="word-break: break-word;">
+                                        <% item %>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="panel-heading">在线用户</p>
+                            <div style="overflow-y: auto; height: 100px">
+                                <div style="display: inline-block" class="panel-block">
+                                    <span v-for="item in online_users" class="tag is-success is-light">
+                                        <% item.username %>
+                                    </span>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
